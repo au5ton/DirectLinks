@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Canisbos Computing</string>
 	<key>Builder Version</key>
-	<string>9537.77.4</string>
+	<string>10601.1.39.0.2</string>
 	<key>CFBundleDisplayName</key>
 	<string>DirectLinks</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.5</string>
+	<string>1.0.6</string>
 	<key>CFBundleVersion</key>
-	<string>1005</string>
+	<string>1006</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
@@ -30,6 +30,8 @@
 	</dict>
 	<key>Description</key>
 	<string>Makes indirect links on Google and Facebook direct.</string>
+	<key>DeveloperIdentifier</key>
+	<string>ZANVZTSER6</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>

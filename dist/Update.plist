@@ -10,9 +10,9 @@
 			<key>Developer Identifier</key>
 			<string>ZANVZTSER6</string>
 			<key>CFBundleShortVersionString</key>
-			<string>1.0.5</string>
+			<string>1.0.6</string>
 			<key>CFBundleVersion</key>
-			<string>1005</string>
+			<string>1006</string>
 			<key>URL</key>
 			<string>https://github.com/canisbos/DirectLinks/blob/master/dist/DirectLinks.safariextz?raw=true</string>
 		</dict>

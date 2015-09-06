@@ -2,7 +2,7 @@
 	if (window != top) {
 		return;
 	}
-	if ((/^www\.google(\.[a-z]+)+$/).test(location.hostname)) {
+	if ((/^(encrypted|www)\.google(\.[a-z]+)+$/).test(location.hostname)) {
 		if (['/','/search','/webhp'].indexOf(location.pathname) >= 0) {
 			document.addEventListener('mousedown', function (e) {
 				var et = e.target, lc = -1;
