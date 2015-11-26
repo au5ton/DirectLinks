@@ -15,9 +15,10 @@
                 if (link.getAttribute('onmousedown')) {
                     link.removeAttribute('onmousedown');
                     if (link.pathname === '/url') {
-                        if ((/[?&]url=[^&]+/).test(link.search)) {
-                            link.href = decodeURIComponent(link.search.split(/[?&]url=/)[1].split('&')[0]);
-                            console.log('Link changed to', link.href);
+                        var url = (/[?&]url=([^&]+)/.exec(link.search) || [])[1];
+                        if (url) {
+                            link.href = decodeURIComponent(url);
+                            console.log('Link changed to', url);
                         }
                     }
                 }
@@ -27,10 +28,26 @@
     if (/^www.facebook(\.[a-z]+)+$/.test(location.hostname)) {
         document.addEventListener('mouseover', function (evt) {
             var thing = evt.target;
-            if (thing instanceof HTMLAnchorElement && thing.onclick && /referrer_log/.test(thing.onclick)) {
-                thing.removeAttribute('onclick');
-                console.log('Removed "onclick" attribute on link to', thing.href);
+            if (thing instanceof HTMLAnchorElement) {
+                reformFacebookLink(thing);
+            }
+            else if (thing.parentElement instanceof HTMLAnchorElement) {
+                reformFacebookLink(thing.parentElement);
             }
         }, false);
+    }
+    
+    function reformFacebookLink(link) {
+        if (link.onclick && /referrer_log/.test(link.onclick)) {
+            link.removeAttribute('onclick');
+            console.log('Removed "onclick" attribute on link to', link.href);
+        }
+        else if (link.pathname === '/l.php') {
+            var url = (/[?&]u=([^&]+)/.exec(link.search) || [])[1];
+            if (url) {
+                link.href = decodeURIComponent(url);
+                console.log('Link changed to', url);
+            }
+        }
     }
 })();
