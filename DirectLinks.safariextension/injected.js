@@ -12,20 +12,11 @@
                     return;
                 var link = et;
                 e.stopPropagation();
-                if (link.getAttribute('onmousedown')) {
-                    link.removeAttribute('onmousedown');
-                    if (link.pathname === '/url') {
-                        var url = (/[?&]url=([^&]+)/.exec(link.search) || [])[1];
-                        if (url) {
-                            link.href = decodeURIComponent(url);
-                            console.log('Link changed to', url);
-                        }
-                    }
-                }
+                reformGoogleLink(link);
             }, false);
         }
-    } else
-    if (/^www.facebook(\.[a-z]+)+$/.test(location.hostname)) {
+    }
+    else if (/^www.facebook(\.[a-z]+)+$/.test(location.hostname)) {
         document.addEventListener('mouseover', function (evt) {
             var thing = evt.target;
             if (thing instanceof HTMLAnchorElement) {
@@ -36,7 +27,30 @@
             }
         }, false);
     }
+    else if (/^twitter(\.[a-z]+)+$/.test(location.hostname)) {
+        document.addEventListener('mouseover', function (evt) {
+            var thing = evt.target;
+            if (thing instanceof HTMLAnchorElement) {
+                reformTwitterLink(thing);
+            }
+            else if (thing.parentElement instanceof HTMLAnchorElement) {
+                reformTwitterLink(thing.parentElement);
+            }
+        }, false);
+    }
     
+    function reformGoogleLink(link) {
+        if (link.getAttribute('onmousedown')) {
+            link.removeAttribute('onmousedown');
+            if (link.pathname === '/url') {
+                var url = (/[?&]url=([^&]+)/.exec(link.search) || [])[1];
+                if (url) {
+                    link.href = decodeURIComponent(url);
+                    console.log('Link changed to', url);
+                }
+            }
+        }
+    }
     function reformFacebookLink(link) {
         if (link.onclick && /referrer_log/.test(link.onclick)) {
             link.removeAttribute('onclick');
@@ -48,6 +62,14 @@
                 link.href = decodeURIComponent(url);
                 console.log('Link changed to', url);
             }
+        }
+    }
+    function reformTwitterLink(link) {
+        var url = link.getAttribute('data-expanded-url');
+        if (url) {
+            link.href = url;
+            link.removeAttribute('data-expanded-url');
+            console.log('Link changed to', url);
         }
     }
 })();
