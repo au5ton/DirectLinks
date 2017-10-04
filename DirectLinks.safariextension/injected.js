@@ -13,7 +13,7 @@
         var link = et;
         e.stopPropagation();
         reformGoogleLink(link);
-      }, false);
+      });
     }
   }
   else if (/^www.facebook(\.[a-z]+)+$/.test(location.hostname)) {
@@ -25,7 +25,7 @@
       else if (thing.parentElement instanceof HTMLAnchorElement) {
         reformFacebookLink(thing.parentElement);
       }
-    }, false);
+    });
   }
   else if (/^twitter(\.[a-z]+)+$/.test(location.hostname)) {
     document.addEventListener('mouseover', function (evt) {
@@ -36,7 +36,7 @@
       else if (thing.parentElement instanceof HTMLAnchorElement) {
         reformTwitterLink(thing.parentElement);
       }
-    }, false);
+    });
   }
   else if ((iconLink = document.querySelector('link[rel="icon"]')) && /\btumblr\.com\//.test(iconLink.href)) {
     document.addEventListener('mouseover', function (evt) {
@@ -44,7 +44,7 @@
       if (thing instanceof HTMLAnchorElement && thing.pathname === '/redirect') {
         reformTumblrLink(thing);
       }
-    }, false);
+    });
   }
 
   function reformGoogleLink(link) {
@@ -64,10 +64,16 @@
       link.removeAttribute('onclick');
       console.log('Removed "onclick" attribute on link to', link.href);
     }
+    else if (link.getAttribute('data-lynx-uri')) {
+      link.removeAttribute('data-lynx-uri');
+      link.removeAttribute('data-lynx-mode');
+      console.log('Removed "data-lynx-uri" attribuge on link to', link.href);
+    }
     else if (link.pathname === '/l.php') {
       var url = (/[?&]u=([^&]+)/.exec(link.search) || [])[1];
       if (url) {
         link.href = decodeURIComponent(url);
+        link.removeAttribute('data-lynx-mode');
         console.log('Link changed to', url);
       }
     }
