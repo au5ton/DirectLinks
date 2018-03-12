@@ -67,7 +67,7 @@
     else if (link.getAttribute('data-lynx-uri')) {
       link.removeAttribute('data-lynx-uri');
       link.removeAttribute('data-lynx-mode');
-      console.log('Removed "data-lynx-uri" attribuge on link to', link.href);
+      console.log('Removed "data-lynx-uri" attribute on link to', link.href);
     }
     else if (link.pathname === '/l.php') {
       var url = (/[?&]u=([^&]+)/.exec(link.search) || [])[1];
