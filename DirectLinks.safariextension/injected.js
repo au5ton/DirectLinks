@@ -16,7 +16,7 @@
       });
     }
   }
-  else if (/^www.facebook(\.[a-z]+)+$/.test(location.hostname)) {
+  else if (/^(beta|web|www)\.facebook(\.[a-z]+)+$/.test(location.hostname)) {
     document.addEventListener('mouseover', function (evt) {
       var thing = evt.target;
       if (thing instanceof HTMLAnchorElement) {
