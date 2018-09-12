@@ -4,7 +4,7 @@ Forked from the [original project](https://github.com/canisbos/DirectLinks), thi
 
 ## Install
 
-Install by using the CRX from the releases page or from the **[Chrome Web Store!](https://chrome.google.com/webstore/detail/jmmlehkhepchhogkchmcmkedebfaebia/)**. The web store link might break because google is weird.
+Install by using the CRX from the releases page or from the **[Chrome Web Store](https://chrome.google.com/webstore/detail/jmmlehkhepchhogkchmcmkedebfaebia/)**. The web store link might break because google is weird.
 
 ## About
 
